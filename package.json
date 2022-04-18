@@ -1,0 +1,17 @@
+{
+    "name": "matu",
+    "version": "0.0.1",
+    "description": "A lot of helper scripts to bootstrap your projects with the right tools",
+    "type": "module",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/fireship-io/javascript-millionaire"
+    },
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js"
+    },
+    "bin": "./index.js",
+    "author": "Matheus Mendes",
+    "license": "MIT"
+}
