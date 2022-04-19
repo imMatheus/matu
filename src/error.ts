@@ -1,6 +1,6 @@
 import chalk from 'chalk'
 
-export function error(message) {
+export function error(message: string) {
     console.log(chalk.red(message))
-    return
+    process.exit(1)
 }
