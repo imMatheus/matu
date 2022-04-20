@@ -2,15 +2,17 @@
 
 import 'module-alias/register'
 
-import inquirer from 'inquirer'
 // import fs from 'fs'
 // import path from 'path'
+import inquirer from 'inquirer'
 import chalk from 'chalk'
 import { execSync } from 'child_process'
 import { vite_supported } from './vite_supported'
 import { error } from './error'
 import { createSpinner } from 'nanospinner'
-import { setup } from './stack/tailwind'
+import { setupTailwind } from './stack/tailwind/setup'
+import { stacks, IStack } from '@stack/stacks'
+import { setupFirebase } from '@stack/firebase/setup'
 
 export let appName: string
 
@@ -35,11 +37,11 @@ async function main() {
         choices: ['angular'].concat(vite_supported),
     })
 
-    const { stack } = await inquirer.prompt({
+    const { stack }: { stack: IStack } = await inquirer.prompt({
         name: 'stack',
         type: 'checkbox',
         message: 'What stack do you want to use?',
-        choices: ['TypeScript', 'Sass', 'Tailwind'],
+        choices: stacks,
     })
 
     // determines if the app is using vite
@@ -53,7 +55,10 @@ async function main() {
         spinner.success({ text: `Created ${framework} app` })
 
         console.log('before')
-        setup()
+
+        if (stack.includes('Tailwind')) setupTailwind()
+        if (stack.includes('Firebase')) await setupFirebase()
+
         console.log('after')
 
         return
