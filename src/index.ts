@@ -53,7 +53,7 @@ async function main() {
         spinner.success({ text: `Created ${framework} app` })
 
         console.log('before')
-        setup(app_name)
+        setup()
         console.log('after')
 
         return
