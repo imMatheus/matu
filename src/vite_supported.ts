@@ -1,1 +1,1 @@
-export const vite_supported = ['vanilla', 'react', 'vue', 'svelte']
+export const vite_supported = ['vanilla', 'react', 'vue', 'svelte'] as const

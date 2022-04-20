@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+import 'module-alias/register'
+
 import inquirer from 'inquirer'
 // import fs from 'fs'
 // import path from 'path'
@@ -10,9 +12,7 @@ import { error } from './error'
 import { createSpinner } from 'nanospinner'
 import { setup } from './stack/tailwind'
 
-console.log('hej')
-// error('shiiiiz')
-// console.log(viteSupported)
+export let appName: string
 
 async function main() {
     // Welcome the user
@@ -25,6 +25,8 @@ async function main() {
     })
 
     if (!app_name) return error('You must provide a name for your app.')
+
+    appName = app_name
 
     const { framework } = await inquirer.prompt({
         name: 'framework',
@@ -49,8 +51,10 @@ async function main() {
 
         execSync(command)
         spinner.success({ text: `Created ${framework} app` })
-        // setup(app_name)
-        console.log(setup)
+
+        console.log('before')
+        setup(app_name)
+        console.log('after')
 
         return
     }

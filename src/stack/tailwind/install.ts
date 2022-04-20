@@ -1,5 +1,5 @@
-import { execSync } from 'child_process'
+import { execSync } from '@utils/execSync'
 
-export function install(appName: string) {
-    execSync(`cd ${appName} && npm install -D tailwindcss postcss autoprefixer`)
+export function install() {
+    execSync('npm install -D tailwindcss postcss autoprefixer')
 }
