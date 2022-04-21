@@ -10,8 +10,9 @@ import { execSync } from 'child_process'
 import { vite_supported } from './vite_supported'
 import { error } from './error'
 import { createSpinner } from 'nanospinner'
-import { setupTailwind } from './stack/tailwind/setup'
 import { stacks, IStack } from '@stack/stacks'
+import { setupTailwind } from './stack/tailwind/setup'
+import { setupScss } from './stack/scss/setup'
 import { setupFirebase } from '@stack/firebase/setup'
 
 export let appName: string
@@ -57,6 +58,7 @@ async function main() {
         console.log('before')
 
         if (stack.includes('Tailwind')) setupTailwind()
+        if (stack.includes('Scss')) setupScss()
         if (stack.includes('Firebase')) await setupFirebase()
 
         console.log('after')
