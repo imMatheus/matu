@@ -8,12 +8,12 @@ import inquirer from 'inquirer'
 import chalk from 'chalk'
 import { execSync } from 'child_process'
 import { vite_supported } from './vite_supported'
-import { error } from './error'
 import { createSpinner } from 'nanospinner'
 import { stacks, IStack } from '@stack/stacks'
-import { setupTailwind } from './stack/tailwind/setup'
-import { setupScss } from './stack/scss/setup'
+import { setupTailwind } from '@stack/tailwind/setup'
+import { setupScss } from '@stack/scss/setup'
 import { setupFirebase } from '@stack/firebase/setup'
+import { checkAppName } from '@utils/index'
 
 export let appName: string
 
@@ -27,7 +27,8 @@ async function main() {
         message: 'What is the name of your app?',
     })
 
-    if (!app_name) return error('You must provide a name for your app.')
+    // will throw error if app name is not valid
+    checkAppName(app_name)
 
     appName = app_name
 

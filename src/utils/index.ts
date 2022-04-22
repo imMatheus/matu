@@ -1,0 +1,6 @@
+export { addScriptToPackage } from './addScriptToPackage'
+export { changeDir } from './changeDir'
+export { checkAppName } from './checkAppName'
+export { execSync } from './execSync'
+export { getPathToProject } from './getPathToProject'
+export { renameFile } from './renameFile'
